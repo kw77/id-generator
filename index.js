@@ -85,7 +85,7 @@ var predeterminedId = function(sequenceNumber){
     return id;
 };
 
-var chancePredeterminedId = function(chance){
+var chancePredeterminedId = function(chance, info){
     // percent = chance of getting a predetemined id (0-1)
     var result = {};
     var random = Math.random();
@@ -98,24 +98,18 @@ var chancePredeterminedId = function(chance){
         result.predetermine = false;
     }
 
-    return result;
+    if(info){
+        return result;
+    } else {
+        return result.id;
+    }
 };
 
-console.log(randomId());
-console.log(randomIds(3));
-console.log(randomPredeterminedId());
-console.log(randomPredeterminedIds(3));
-console.log(listPredeterminedIds());
-console.log(predeterminedId(0));
-console.log(chancePredeterminedId(0.5));
-
-// id generator
- // - predetermined range
- // - predetermined seed
- // + get random id                             // rtn string
- // + get random ids(1-*)                       // rtn array
- // + get random predetermined id               // rtn string
- // + get random predetermined ids(1-*)         // rtn array
- // + get predetermined id list                 // rtn array (all)
-// + get chance of predetermined(0-100 for pre)// rtn string
- // + get predetermined id(1-range)             // rtn string
+console.log( 'Random ID:      ' + randomId()                 );
+console.log( 'Random IDs:     ' + randomIds(3)               );
+console.log( 'Random Pred:    ' + randomPredeterminedId()    );
+console.log( 'Random Preds:   ' + randomPredeterminedIds(3)  );
+console.log( 'List Pred IDs:  ' + listPredeterminedIds()     );
+console.log( 'Specific Pred:  ' + predeterminedId(0)         );
+console.log( 'Chance pred ID: ' + chancePredeterminedId(0.5) );
+console.log( 'Chance pred Ob: ' + JSON.stringify(chancePredeterminedId(0.5, true)) );
