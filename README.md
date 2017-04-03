@@ -7,7 +7,7 @@ Output can either be in flat strings or as objects. Objects will also contain cl
 predetermined in a fashion linked to the id. Full info is useful when pre-populating test databases, etc... single strings when generating 
 test requests.
 
-Example code:
+Example code, with flat string-based output:
 
 ```javascript
 const IdGenerator = require('./index.js');
@@ -21,9 +21,23 @@ console.log( 'Random Preds:   ' + generator.randomPredeterminedIds(3) );
 console.log( 'List Pred IDs:  ' + generator.listPredeterminedIds() );
 console.log( 'Specific Pred:  ' + generator.predeterminedId(0) );
 console.log( 'Chance pred ID: ' + generator.chancePredeterminedId(0.5) );
+```
 
-console.log('------------------------');
+Output:
 
+```bash
+Random ID:      PV231787
+Random IDs:     DO844106,HC558086,CG798286
+Random Pred:    CT788891
+Random Preds:   CT788891,GC582466,KW184852                                                                                                         
+List Pred IDs:  CB709848,GR974268,PO200080,XY975046,JP757253,AH845018,EX865987,GC582466,KW184852,CT788891                                          
+Specific Pred:  CB709848                                                                                                                           
+Chance pred ID: PO200080
+```
+
+Example code, with object-based output:
+
+```javascript
 let generator2 = new IdGenerator(4,1,true);
 
 console.log( 'Random ID:      ' + JSON.stringify(generator2.randomId() ) );
@@ -35,4 +49,17 @@ console.log( 'Specific Pred:  ' + JSON.stringify(generator2.predeterminedId(0) )
 console.log( 'Chance pred ID: ' + JSON.stringify(generator2.chancePredeterminedId(0.5) ) );
 console.log( 'Chance pred Ob: ' + JSON.stringify(generator2.chancePredeterminedId(0.5, true) ) );
 
+```
+
+Output:
+
+```bash
+Random ID:     {"id":"FE281441","class":"05V"}
+Random IDs:    [{"id":"UL279572","class":"04S"},{"id":"KW142570","class":"04T"},{"id":"TM651699","class":"01E"}]
+Random Pred:   {"id":"GR974268","class":"04U"}
+Random Preds:  [{"id":"GR974268","class":"04U"},{"id":"GR974268","class":"04U"},{"id":"GR974268","class":"04U"}]
+List Pred IDs: [{"id":"CB709848","class":"01B"},{"id":"GR974268","class":"04U"},{"id":"PO200080","class":"04U"},{"id":"XY975046","class":"05Y"}]
+Specific Pred:  {"id":"CB709848","class":"01B"}
+Chance pred ID: {"id":"JK559993","class":"02H","predetermined":false}
+Chance pred Ob: {"id":"CB709848","class":"01B","predetermined":true}
 ```
